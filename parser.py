@@ -1,12 +1,7 @@
 import query
 import Queue
 import threading
-import pylibmc
-from cache import Cache
-backend = pylibmc.Client(["127.0.0.1"])
-cache = Cache(backend)
 
-@cache("iw4m-servers", time=180)
 def load():
 	servers = []
 
