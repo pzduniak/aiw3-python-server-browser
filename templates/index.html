@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Servers{% endblock %}
+
+{% block content %}
+	<script type="text/javascript">
+		$(document).ready(function() {
+			var dt = $('#servers').dataTable({
+				"bPaginate": false,
+				//"bFilter": false,
+				"bAutoWidth": false
+			});
+
+			$('#search').keyup(function(){
+				dt.fnFilter( $(this).val() );
+			})
+		} );
+	</script>
+
+	<div class="row">
+		<div class="span6">
+			<h2>Servers ({{len(servers)}} found)</h2>
+		</div>
+		<div class="span6">
+			<form class="form-search pull-right server-search">
+				<label>Search:</label>
+				<input type="text" class="input-medium search-query" id="search">
+			</form>
+		</div>
+	</div>
+
+
+	<table class="table table-striped" id="servers">
+		<thead>
+			<tr>
+				<td style="width: 16px"></td>
+				<td>Name</td>
+				<td style="width: 80px">Map</td>
+				<td style="width: 140px">Gametype</td>
+				<td>Players</td>
+				<td>IP:Port</td>
+				<td style="width: 50px">Version</td>
+			</tr>
+		</thead>
+
+		<tbody>
+			{% for server in servers %}
+			<tr>
+				<td><img src="{{url_for('static', filename='img/flags/' ~ geoip(server.address) ~'.png')|lower}}"></td>
+				<td style="background:">{{colour(trim(server.hostname))|safe}}</td>
+				<td>{{mapname(trim(server.mapname))}}</td>
+				<td>{{gametype(trim(server.gametype))}} {#({{trim(server.fs_game)}})#}</td>
+				<td>{{trim(server.clients)}}/{{trim(server.maxclients)}}</td>
+				<td><a href="iw4m://connect/{{trim(server.address)}}">{{trim(server.address)}}</a></td>
+				<td>{{trim(server.version)}}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}

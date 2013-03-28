@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>{% block title %}{% endblock %} - IW4M Serverlist</title>
+
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/darkstrap.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/tables.js') }}"></script>
+	</head>
+
+	<body>
+		<div class="navbar navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
+					<a class="brand" href="{{ url_for('index') }}">IW4M serverlist</a>
+					<div class="nav-collapse collapse">
+						<ul class="nav">
+							<li class="active"><a href="#">Servers</a></li>
+							<li><a href="https://dl.dropbox.com/s/o5gkkv3rudj4h00/Installer.exe?dl=1">Download iw4m://</a></li>
+						</ul>
+
+						<ul class="nav pull-right">
+							<li><a href="https://github.com/pzduniak/iw4m-serverbrowser">Source code</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container">
+			{% block content %}{% endblock %}
+		</div>
+	</body>
+</html>
