@@ -53,17 +53,22 @@ def GetInfo(ip,port):
 		if ready[0]:
 			data = sock.recv(4096)
 			try:
-				hostname = data.split("hostname\\")[1].split("\\")[0]
-				gametype = data.split("gametype\\")[1].split("\\")[0]
-				clients = data.split("clients\\")[1].split("\\")[0]
-				mapname = data.split("mapname\\")[1].split("\\")[0]
-				hardcore = data.split("hc\\")[1].split("\\")[0]
-				version = data.split("shortversion\\")[1].split("\\")[0]
-				maxclients = data.split("sv_maxclients\\")[1].split("\\")[0]
-				#fs_game = data.split("fs_game\\")[1].split("\\")[0]
-				address = ip + ":" + str(port)
+				data = data.split("\\")[1:]
+				assert len(data) % 2 == 0
+				keys = data[0::2]
+				values = data[1::2]
+				variables = dict(zip(keys, values))
 
-				return {"hostname":hostname, "gametype":gametype, "clients":clients, "mapname":mapname, "hardcore":hardcore,"version":version,"maxclients":maxclients,"address":address} #"fs_game":fs_game
+				return {
+					"hostname": variables["hostname"],
+					"gametype":variables["gametype"],
+					"clients":variables["clients"],
+					"mapname":variables["mapname"],
+					"hardcore":variables["hc"],
+					"version":variables["shortversion"],
+					"maxclients":variables["sv_maxclients"],
+					"address": ip + ":" + str(port)
+				}
 			except:
 				return False
 		else:
