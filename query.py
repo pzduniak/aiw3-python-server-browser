@@ -16,7 +16,7 @@ def GetServers():
 	iplist = []
 	list = []
 	errlist = []
-	UDP_IP = "iw4.prod.fourdeltaone.net"
+	UDP_IP = "server.aiw3.net"
 	UDP_PORT = 20810
 	MESSAGE = "\xFF\xFF\xFF\xFFgetservers IW4 61586 full empty\x00"
 
