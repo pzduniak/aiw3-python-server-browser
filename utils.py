@@ -1,6 +1,6 @@
 import pygeoip
 
-gi = pygeoip.GeoIP('/home/iw4m/data/GeoIP.dat', pygeoip.MEMORY_CACHE)
+gi = pygeoip.GeoIP('/usr/local/share/GeoIP/GeoIP.dat', pygeoip.MEMORY_CACHE)
 
 gametypes = {
 	"sd": "Search & Destroy",
