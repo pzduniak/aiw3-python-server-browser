@@ -10,3 +10,10 @@ Requirements:
  * flask
  
 Uses Twitter Bootstrap.
+
+Installation (Ubuntu 12.04)
+===========================
+```
+sudo apt-get install gcc python python-pip python-dev libmemcached-dev
+sudo pip install flask pygeoip pylibmc cache
+```
