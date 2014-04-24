@@ -6,7 +6,7 @@ import parser
 import pylibmc
 from cache import Cache
 
-app = Flask(__name__, static_folder="/home/iw4m/web/static")
+app = Flask(__name__, static_folder="./static")
 backend = pylibmc.Client(["127.0.0.1"])
 cache = Cache(backend)
 
